@@ -1,0 +1,6 @@
+node_modules
+.hbuilderx
+.git
+.idea
+unpackage
+package-lock.json

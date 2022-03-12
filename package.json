@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "uview-ui": "^2.0.28",
+    "vuex": "^4.0.2"
+  }
+}
