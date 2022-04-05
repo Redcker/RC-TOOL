@@ -1,33 +1,23 @@
 <template>
 	<view class="main">
-		<view class="copy-right-area">
-			<image :showLoading="true" :src="logo" :radius="18"></image>
-			<h3>
-				RCJD
-			</h3>
-			<p>
-				本工具完全免费，且不会上传任何用户数据
-			</p>
-			<p>
-				开源地址：<uni-link href="https://github.com/Redcker/RCJD" text="https://github.com/Redcker/RCJD"></uni-link>
-			</p>
+		<view>
+			<Beans v-if="cookie" />
+			<template v-else>
+				<view class="tip">
+					登录后即可查看京东收入统计
+				</view>
+			</template>
 		</view>
-		<u-divider></u-divider>
-		<view class="login-area" v-show="!isShowChart">
+		<view class="login-area">
 			<u-button class="btn" type="error" @click="modalShow=true">{{ckBtnText}}cookie</u-button>
 			<u-button class="btn" type="warning" @click="loginTipShow=true">获取cookie</u-button>
-			<u-button class="btn" type="primary" @click="isShowChart=true" :disabled="!cookie">查看京豆数据</u-button>
-		</view>
-		<view v-if="isShowChart">
-			<Beans />
-			<u-button class="btn cancel-btn" type="primary" @click="isShowChart=false">返回</u-button>
 		</view>
 		<u-modal :show="modalShow" title="请输入cookie" :showCancelButton="true" @confirm="saveCookie"
 			@cancel="modalShow=false">
 			<u-textarea v-model="$store.state.cookie" placeholder="pt_key=xxx;pt_pin=xxx;"></u-textarea>
 		</u-modal>
 		<u-modal :show="loginTipShow" :showCancelButton="true" @confirm="goToWebView" @cancel="loginTipShow=false"
-			content="请在新页面中使用手机号登录,系统会自动获取cookie并返回,若提示打开京东,请拒绝" title="温馨提示"></u-modal>
+			content="请在新页面中使用手机号登录,系统会自动获取cookie,若提示打开京东,请拒绝" title="温馨提示"></u-modal>
 		<u-toast ref="uToast"></u-toast>
 
 	</view>
@@ -54,9 +44,9 @@
 		components: {
 			Beans
 		},
-		watch:{
-			ckBtnText(newVal){
-				if (newVal){
+		watch: {
+			ckBtnText(newVal) {
+				if (newVal) {
 					this.ckBtnText = '查看'
 				}
 			}
@@ -80,6 +70,11 @@
 				uni.navigateTo({
 					url: '../login/login'
 				})
+			},
+			goToLoginQL() {
+				uni.navigateTo({
+					url: '../ql_panel/ql_panel'
+				})
 			}
 		},
 	}
@@ -87,29 +82,14 @@
 
 <style lang="scss">
 	.main {
-		.copy-right-area {
-			margin: 80px auto 40px;
-			text-align: center !important;
-
-			image {
-				display: block;
-				margin: 0 auto;
-				width: 70px;
-				height: 70px;
-				margin-bottom: 20px;
-				border-radius: 18px;
-			}
-
-			p {
-				margin-top: 10px;
-			}
-
-		}
+		padding-top: 20rpx;
 
 		.login-area {
-			margin: 40px auto;
-			width: 100%;
+			position: absolute;
 			text-align: center;
+			bottom: 40rpx;
+			left: 0;
+			right: 0;
 		}
 
 		.btn {
@@ -119,6 +99,12 @@
 
 		.cancel-btn {
 			margin-top: 10px;
+		}
+		
+		.tip {
+			color: $u-tips-color;
+			margin-top: 200px;
+			text-align: center;
 		}
 	}
 </style>

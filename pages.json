@@ -4,25 +4,98 @@
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/index/index",
+			"path": "pages/jd/jd",
 			"style": {
-				"navigationBarTitleText": "RCJD",
-				"app-plus": {
-					"titleNView": false
-				}
+				"navigationBarTitleText": "京东助手"
 			}
-		}, {
-			"path": "pages/login/login",
+		},
+		{
+			"path": "pages/ql_panel/ql_panel",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/jd_login/jd_login",
 			"style": {
 				"navigationBarTitleText": "获取cookie",
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/ql_panel/login/login",
+			"style": {
+				"navigationBarTitleText": "青龙面板登录",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/ql_panel/cron_log/cron_log",
+			"style": {
+				"navigationBarTitleText": "定时任务执行结果",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/ql_panel/env_detail/env_detail",
+			"style": {
+				"navigationBarTitleText": "环境变量详情",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/ql_panel/cron_detail/cron_detail",
+			"style": {
+				"navigationBarTitleText": "定时任务详情",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/ql_panel/config/config",
+			"style": {
+				"navigationBarTitleText": "青龙面板配置文件",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/about/about",
+			"style": {
+				"navigationBarTitleText": "关于",
+				"enablePullDownRefresh": false
+			}
+
 		}
 	],
+	"tabBar": {
+		"color": "#999999",
+		"selectedColor": "#000000",
+		"borderStyle": "black",
+		"backgroundColor": "#FFFFFF",
+		"iconWidth": "24px",
+		"list": [{
+				"pagePath": "pages/jd/jd",
+				"iconPath": "static/tabbar/consumption.png",
+				"selectedIconPath": "static/tabbar/consumption-fill.png",
+				"text": "京东"
+			},
+			{
+				"pagePath": "pages/ql_panel/ql_panel",
+				"iconPath": "static/tabbar/calendar.png",
+				"selectedIconPath": "static/tabbar/calendar-fill.png",
+				"text": "青龙"
+			},
+			{
+				"pagePath": "pages/about/about",
+				"iconPath": "static/tabbar/account.png",
+				"selectedIconPath": "static/tabbar/account-fill.png",
+				"text": "关于"
+			}
+		]
+	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "RCJD",
+		"navigationBarTitleText": "RC-TOOL",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	}

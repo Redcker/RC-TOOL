@@ -11,6 +11,7 @@ const app = new Vue({
 	store,
     ...App
 })
+require('utils/request.js')(app)
 app.$mount()
 // #endif
 

@@ -3,7 +3,7 @@
 		<template v-if="isContinue">
 			<u-loading-icon :show="true" text="疯狂拉取数据中..."></u-loading-icon>
 		</template>
-		<template v-if="!isContinue">
+		<template v-else>
 			<h4>七天京豆收入统计</h4>
 			<view class="charts-box">
 				<qiun-data-charts type="line" :chartData="chartData" background="none" :ontouch="true" />
@@ -97,13 +97,12 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
 	.main {
 		text-align: center;
 
 		.charts-box {
 			width: 100%;
-			/* height: 300px; */
 			background: #FFFFFF;
 			margin-bottom: 20rpx;
 		}
