@@ -15,7 +15,7 @@
 		</view>
 		<u-divider></u-divider>
 		<u-cell-group>
-			<u-cell icon="chat-fill" title="反馈交流" value="点击跳转TG群组" @click="goToLink('https://t.me/+DOIPC-ME89BlZWE9')">
+			<u-cell icon="chat-fill" title="反馈交流" value="点击加入QQ群" @click="goToLink('https://jq.qq.com/?_wv=1027&k=l7WujHBX')">
 			</u-cell>
 			<u-cell icon="integral-fill" title="检查更新" :value="newVersion" clickable @click="goToLink(versionUrl)">
 			</u-cell>

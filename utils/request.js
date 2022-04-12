@@ -5,6 +5,7 @@ module.exports = (vm) => {
 		/* config 为默认全局配置*/
 		config.dataType = 'json';
 		config.timeout = 6000;
+		config.withCredentials = false;
 		return config
 	})
 
@@ -36,16 +37,15 @@ module.exports = (vm) => {
 			if (custom.toast !== false) {
 				uni.$u.toast(data.message)
 			}
-			if (custom?.catch) {
-				return Promise.reject(data)
-			} else {
-				return new Promise(() => {})
-			}
+			return Promise.reject(data)
 		}
 		return data.data || data
 	}, (response) => {
 		uni.hideLoading()
-		uni.$u.toast(response.data.message || '服务器错误')
+		if (response.config.custom.toast) {
+			uni.$u.toast(response.data.message || '服务器错误')
+		}
+		
 		return Promise.reject(response)
 	})
 }

@@ -119,6 +119,7 @@
 </script>
 
 <style>
+	@import 'highlight.js/styles/github-dark.css';
 	.msg {
 		margin: 10rpx;
 	}

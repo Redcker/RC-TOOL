@@ -4,24 +4,28 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
 	state: {
-		cookie: null,
-		QLInfo:{},
+		jdUsers: [],
+		QLInfo: {},
+		jdck: ''
 	},
 	mutations: {
-		setCookie(state, cookie) {
-			state.cookie = cookie
+		setCK(state, ck) {
+			state.jdck = ck
 		},
-		updateQLToken(state,token){
+		setJDUser(state, info) {
+			state.jdUsers.push(info)
+		},
+		updateQLToken(state, token) {
 			state.QLInfo.token = token
 			let info = JSON.parse(uni.getStorageSync('QLInfo'))
 			info['token'] = token
-			uni.setStorageSync('QLInfo',JSON.stringify(info))
+			uni.setStorageSync('QLInfo', JSON.stringify(info))
 		},
-		setQLInfo(state,info) {
+		setQLInfo(state, info) {
 			state.QLInfo = info
-			uni.setStorageSync('QLInfo',JSON.stringify(info))
+			uni.setStorageSync('QLInfo', JSON.stringify(info))
 		},
-		setQLServerUrl(state,url){
+		setQLServerUrl(state, url) {
 			state.QLInfo.serverUrl = url
 		}
 	},

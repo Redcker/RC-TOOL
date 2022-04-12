@@ -2,9 +2,9 @@
 	import {checkQLLogin} from 'utils/ql.js'
 	export default {
 		onLaunch: function() {
-			let cookie = uni.getStorageSync('cookie')
-			if (cookie) {
-				this.$store.commit('setCookie', cookie)
+			let jdUsers = uni.getStorageSync('jdUsers')
+			if (jdUsers) {
+				this.$store.state.jdUsers = jdUsers
 			}
 			let QLInfo = uni.getStorageSync('QLInfo')
 			if (QLInfo) {
@@ -13,7 +13,6 @@
 			checkQLLogin()
 		},
 		onShow: function() {
-
 		},
 		onHide: function() {
 

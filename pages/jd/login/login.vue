@@ -8,7 +8,8 @@
 	export default {
 		data() {
 			return {
-				wv: null
+				wv: null,
+				cookie: ''
 			}
 		},
 		methods: {
@@ -32,9 +33,10 @@
 								break
 							}
 						}
-						this.$store.commit('setCookie', pt_key + pt_pin)
-						uni.setStorageSync('cookie', pt_key + pt_pin)
-						this.wv.evalJS('alert("cookie获取成功，请返回");')
+						this.$store.commit('setCK', pt_key + pt_pin)
+						uni.navigateBack({
+							delta:1
+						})
 						clearInterval(timer)
 					}
 				}, 1000)

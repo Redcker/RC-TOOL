@@ -6,7 +6,8 @@
 		{
 			"path": "pages/jd/jd",
 			"style": {
-				"navigationBarTitleText": "京东助手"
+				"navigationBarTitleText": "京东助手",
+				"navigationStyle": "custom"
 			}
 		},
 		{
@@ -18,7 +19,7 @@
 			}
 		},
 		{
-			"path": "pages/jd_login/jd_login",
+			"path": "pages/jd/login/login",
 			"style": {
 				"navigationBarTitleText": "获取cookie",
 				"enablePullDownRefresh": false
@@ -66,7 +67,16 @@
 			}
 
 		}
-	],
+	    ,{
+            "path" : "pages/jd/setting/setting",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "CK管理",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"tabBar": {
 		"color": "#999999",
 		"selectedColor": "#000000",

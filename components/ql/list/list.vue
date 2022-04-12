@@ -47,6 +47,10 @@
 					{
 						name: '编辑',
 						index: 1
+					},
+					{
+						name: '运行',
+						index: 2
 					}
 				],
 				index: null,
@@ -70,6 +74,7 @@
 			handleClick(index) {
 				if (this.current === 'crons') {
 					this.cronId = this.items[index].id
+					this.list[2].name = this.items[index].status ? '运行' : '禁用'
 					this.show = true
 					this.index = index
 				} else {
@@ -83,9 +88,18 @@
 					uni.navigateTo({
 						url: `../../../cron_log/cron_log?cronId=${this.cronId}`
 					})
-				} else {
+				} else if (item.index === 1) {
 					uni.navigateTo({
 						url: `../../../cron_detail/cron_detail?cronDetail=${JSON.stringify(this.items[this.index])}`
+					}),this.current,''
+				} else { // 禁用脚本
+					ql.put.status(this.items[this.index].id,this.current,this.items[this.index].status?'run':'stop').then(res => {
+						this.$refs.uToast.show({
+							type: 'success',
+							message: (this.items[this.index].status ? '禁用' : '运行') + '成功'
+						})
+						this.items[this.index].status = this.items[this.index].status === 0 ? 1 : 0
+						this.list[2].name = this.items[this.index].status ? '禁用' : '运行'
 					})
 				}
 			},
@@ -100,7 +114,7 @@
 					if (index) {
 						return item.isDisabled ? 'error' : 'success'
 					} else {
-						return item.isDisabled ? '已禁用' : '已启用'
+						return item.isDisabled ? '已禁用' : !item.status ? '运行中' : '已启用'
 					}
 				}
 			},

@@ -7,6 +7,23 @@ let getQLConfig = () => {
 		}
 	}
 }
+let getJDConfig = (cookie) => {
+	return {
+		header: {
+			"user-agent": "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1",
+			'Cookie': cookie
+		},
+	}
+}
+let getJXConfig = (cookie) => {
+	return {
+		header: {
+			"Referer": "https://st.jingxi.com/",
+			"user-agent": "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1",
+			'Cookie': cookie
+		},
+	}
+}
 // 青龙相关请求
 export const ql = {
 	get: {
@@ -28,9 +45,11 @@ export const ql = {
 		login: (data) => http.post(`${store.state.QLInfo.serverUrl}/api/user/login`, data),
 		item: (data, type) => http.post(`${store.state.QLInfo.serverUrl}/api/${type}`, data,
 			getQLConfig()
-		)
+		),
+		config: (data) => http.post(`${store.state.QLInfo.serverUrl}/api/configs/save`, data, getQLConfig())
 	},
 	put: {
+		two_step_login: (data) => http.put(`${store.state.QLInfo.serverUrl}/api/user/two-factor/login`, data),
 		item: (info, type) => http.put(`${store.state.QLInfo.serverUrl}/api/${type}`, {
 				...info
 			},
@@ -52,8 +71,23 @@ export const app = {
 	get: {
 		checkUpdate: () => http.get('https://api.github.com/repos/Redcker/RCJD/releases', {
 			custom: {
-				noloading: true
+				noloading: true,
+				toast: false
 			}
 		})
+	}
+}
+
+
+export const jd = {
+	get: {
+		info: (cookie) => http.get('https://me-api.jd.com/user_new/info/GetJDUserInfoUnion', getJDConfig(cookie)),
+	}
+}
+export const jx = {
+	get: {
+		beanCount: (cookie) => http.get('https://m.jingxi.com/activeapi/querybeanamount?sceneval=2&g_login_type=1',
+			getJXConfig(cookie)),
+		beanDetail : (cookie) => http.get('https://m.jingxi.com/activeapi/queryuserjingdoudetail?sceneval=2&g_login_type=1&g_ty=ls&pagesize=10&type=16')
 	}
 }
